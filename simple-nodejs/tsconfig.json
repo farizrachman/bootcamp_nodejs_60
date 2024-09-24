@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5", // Versi ECMAScript target
+    "module": "commonjs", // Sistem modul yang digunakan
+    "outDir": "./dist",
+    "strict": true, // Mengaktifkan semua opsi pemeriksaan ketat
+    "esModuleInterop": true, // Menambah interoperabilitas ES Modules
+    "skipLibCheck": true, // Melewati pemeriksaan tipe pada file .d.ts
+    "forceConsistentCasingInFileNames": true // Memaksa penamaan file yang konsisten
+  },
+  // "include": [
+  //   "src/**/*" // Direktori yang akan dikompilasi
+  // ],
+  "exclude": [
+    "node_modules" // Direktori yang tidak akan dikompilasi
+  ]
+}
