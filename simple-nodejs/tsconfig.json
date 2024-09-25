@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5", // Versi ECMAScript target
+    "target": "ES2016", // Versi ECMAScript target
     "module": "commonjs", // Sistem modul yang digunakan
     "outDir": "./dist",
     "strict": true, // Mengaktifkan semua opsi pemeriksaan ketat
