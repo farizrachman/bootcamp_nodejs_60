@@ -34,7 +34,7 @@ function init() {
   });
 
   // Melayani file statis dari direktori "public"
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname, '../public')));
   // app.use("/static", express.static(path.join(__dirname + '/public')));
 
   app.listen(PORT, () => {
