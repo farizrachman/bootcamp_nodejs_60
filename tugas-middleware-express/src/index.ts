@@ -49,6 +49,19 @@ function init() {
     res.status(201).json(newProduct);
   });
 
+  // POST produk baru dengan upload gambar
+  app.post("/api/products/multi", upload.array('image'), (req, res) => {
+    const newProduct = {
+      id: products.length + 1,
+      name: req.body.name,
+      price: req.body.price,
+      image: req.file ? req.file.path : ''
+    };
+
+    products.push(newProduct);
+    res.status(201).json(newProduct);
+  });
+
   app.use(express.static(path.join(__dirname, '../uploads')));
 
   app.listen(PORT, () => {
