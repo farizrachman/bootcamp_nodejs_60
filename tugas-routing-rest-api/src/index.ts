@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 const path = require('path');
 // import * as path from 'path';
+var bodyParser = require('body-parser');
 const PORT = 3000;
 
 function init() {
@@ -12,6 +13,7 @@ function init() {
     });
   });
 
+  app.use(bodyParser.json());
   // route get untuk hello
   app.get("/hello", (req: Request, res: Response) => {
     res.status(200).json({
@@ -35,13 +37,11 @@ function init() {
 
   let categories = [
     { id: 1, name: 'Elektronik' },
-    { id: 2, name: 'Perabotan' },
-    { id: 3, name: "Pakaian dan Aksesoris" },
-    { name: "Testing" }
+    { id: 2, name: 'Perabotan' }
   ];
 
   // route get untuk semua kategori
-  app.get("/kategori", (req: Request, res: Response) => {
+  app.get("/api/categories", (req: Request, res: Response) => {
     // res.status(200).json({
     // res.json({
     //   message: "Success fetch kategori",
@@ -55,7 +55,7 @@ function init() {
   });
 
   // route get untuk kategori berdasarkan id
-  app.get('/kategori/:id', (req: Request, res: Response) => {
+  app.get('/api/categories/:id', (req: Request, res: Response) => {
     const categoryId = parseInt(req.params.id);
     const category = categories.find((k: any) => k.id === categoryId);
     if (category) {
@@ -66,21 +66,24 @@ function init() {
   });
 
   // route post kategori baru
-  app.post('/kategori', (req: Request, res: Response) => {
+  app.post("/api/categories", (req: Request, res: Response) => {
     // const newCategory = req.body;
+    // const { name } = req.body;
+    // const newCategory = { id: categories.length + 1, name };
+
+    const id = categories.length + 1;
+    const newCategory = {id, ...req.body};
     // const newCategory = {
     //   id: categories.length + 1,
     //   name: req.body.name
     // };
-    const newCategory = req.body;
-    newCategory.id = categories.length + 1;
 
     categories.push(newCategory);
     res.status(201).json(newCategory);
   });
 
   // route put untuk update kategori
-  app.put('/kategori/:id', (req, res) => {
+  app.put("/api/categories/:id", (req, res) => {
     const categoryId = parseInt(req.params.id);
     const categoryIndex = categories.findIndex((k: any) => k.id === categoryId);
     if (categoryIndex !== -1) {
@@ -92,7 +95,7 @@ function init() {
   });
 
   // route delete untuk hapus kategori
-  app.delete('kategori/:id', (req, res) => {
+  app.delete("/api/categories/:id", (req, res) => {
     const categoryId = parseInt(req.params.id);
     const category = categories.filter((k: any) => k.id !== categoryId);
     if (category) {
@@ -104,14 +107,14 @@ function init() {
   });
 
   // Route dengan query string
-  app.get('/search', (req, res) => {
+  app.get("/api/search", (req, res) => {
     const query = req.query.q;
     // Lakukan pencarian berdasarkan query
     res.json({ query: query, results: [{ id: 1, name: 'Laptop', category: 'Elektronik' }, { id: 2, name: 'Meja', category: 'Perabotan' }] });
   });
 
   // Route dengan parameter dan query string
-  app.get('/kategori/:id/posts', (req: Request, res: Response) => {
+  app.get("/api/categories/:id/posts", (req: Request, res: Response) => {
     const categoryId = req.params.id;
     const searchQuery = req.query.q;
     // Ambil postingan pengguna berdasarkan ID dan query pencarian
