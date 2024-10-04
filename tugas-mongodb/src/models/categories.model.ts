@@ -10,7 +10,7 @@ const CategoriesSchema = new Schema(
     },
     categoryId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
+      ref: "Products",
     },
   },
   {
