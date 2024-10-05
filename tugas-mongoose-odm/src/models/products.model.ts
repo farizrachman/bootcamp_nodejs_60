@@ -1,32 +1,45 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
+
+export interface Product {
+  _id?: Types.ObjectId;
+  name: string;
+  description: string;
+  images: string[];
+  price: number;
+  qty: number;
+  categoryId: Types.ObjectId;
+  createdAt: string;
+  updatedAt: string;
+}
 
 const Schema = mongoose.Schema;
 
-const ProductsSchema = new Schema(
+const ProductsSchema = new Schema<Product>(
   {
     name: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
     },
     description: {
-      type: String,
+      type: Schema.Types.String,
       required: true,
     },
     images: {
-      type: [String],
+      type: [Schema.Types.String],
       required: true,
     },
     price: {
-      type: Number,
+      type: Schema.Types.Number,
       required: true,
     },
     qty: {
-      type: Number,
+      type: Schema.Types.Number,
       required: true,
-      min: [1, "Quantity can not be less than 1"],
+      min: [1, "Minimal qty adalah 1"],
     },
     categoryId: {
-      type: mongoose.Schema.Types.ObjectId,
+      // type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Categories",
     },
   },

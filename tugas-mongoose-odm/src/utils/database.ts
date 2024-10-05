@@ -5,7 +5,7 @@ const connect = async () => {
   try {
     await mongoose.connect(DATABASE_URL, {
       autoIndex: true,
-      dbName: "sanber-be-59",
+      dbName: "sanber_nodejs_60",
       connectTimeoutMS: 10000,
     });
     return "Database connected";
