@@ -10,6 +10,7 @@ const connect = async () => {
     });
     return "Database connected";
   } catch (error) {
+    console.log(error);
     return error;
   }
 };

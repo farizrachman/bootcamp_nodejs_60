@@ -26,6 +26,7 @@ export default {
       });
     } catch (error) {
       const err = error as Error;
+      console.log(err);
       res.status(500).json({
         data: err.message,
         message: "Failed get all products",
