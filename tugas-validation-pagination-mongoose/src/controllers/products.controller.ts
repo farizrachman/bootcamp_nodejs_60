@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import ProductsModel from "../models/products.model";
-import Yup from "yup";
+// import Yup from "yup";
+import * as Yup from "yup";
 
 const createValidationSchema = Yup.object().shape({
   name: Yup.string().required(),
   price: Yup.number().required(),
-  category: Yup.string().required(),
+  categoryId: Yup.string().required(),
   description: Yup.string().required(),
   images: Yup.array().of(Yup.string()).required().min(1),
   qty: Yup.number().required().min(1),
@@ -62,7 +63,7 @@ export default {
         .limit(limit)
         .skip((page - 1) * limit)
         .sort({ createdAt: -1 })
-        .populate("category");
+        .populate("categoryId");
 
       const total = await ProductsModel.countDocuments(query);
 

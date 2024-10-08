@@ -7,6 +7,7 @@ export interface Product {
   images: string[];
   price: number;
   qty: number;
+  slug: string;
   categoryId: Types.ObjectId;
   createdAt: string;
   updatedAt: string;
