@@ -28,7 +28,8 @@ router.delete("/categories/:id", categoriesController.delete);
 router.post("/auth/login", authController.login);
 router.post("/auth/register", authController.register);
 router.post("/auth/me", authMiddleware, authController.me);
-router.put("/auth/update-profile", authMiddleware, authController.updateProfile);
+// router.put("/auth/update-profile", authMiddleware, authController.updateProfile);
+router.put("/auth/update-profile", authMiddleware, authController.profile);
 
 router.post("/upload", uploadMiddleware.single, uploadController.single);
 router.post("/uploads", uploadMiddleware.multiple, uploadController.multiple);

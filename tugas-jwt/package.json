@@ -29,6 +29,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/multer": "^1.4.12",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.6.3"

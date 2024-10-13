@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import UserModel, { User } from "../models/user.model";
 import { IRequestWithUser } from "../middlewares/auth.middleware";
+import * as Yup from "yup";
 import { login, register, updateProfile } from "../services/auth.service";
 import { ObjectId } from "mongoose";
-import * as Yup from "yup";
 
 const registerSchema = Yup.object().shape({
     fullName: Yup.string().required(),
